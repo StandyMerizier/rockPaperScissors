@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Rock, Paper, Scissors with Node</title>
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <h1 id="computer"></h1>
+    <h1 id="user"></h1>
+    <button type="button" name="button" value="Rock">Rock</button>
+    <button type="button" name="button" value="Paper">Paper</button>
+    <button type="button" name="button" value="Scissors">Scissors</button>
+    <span class="userChoice"></span>
+    <span class="botChoice"></span>
+    <p class="result"></p>
+
+    <script type="text/javascript">
+
+      let choice = 0;
+
+      document.getElementsByTagName('button')[0].onclick = rock;
+      document.getElementsByTagName('button')[1].onclick = paper;
+      document.getElementsByTagName('button')[2].onclick = scissors;
+
+      function rock (){
+        choice = "rock"
+        compChoice()
+      }
+      function paper (){
+        choice = "paper"
+        compChoice()
+      }
+      function scissors (){
+        choice = "scissors"
+        compChoice()
+      }
+
+      function compChoice(){
+        let botChoice = Math.random()
+        if(botChoice < .33){
+          botChoice = "rock"
+        } else if (botChoice  < .66){
+          botChoice = "paper"
+        } else {
+          botChoice = "scissors"
+        }
+        compare(botChoice)
+      }
+
+      function compare(botWeapon){
+        if (choice === "rock" && botWeapon === "scissors" ||
+        choice === "scissors" && botWeapon === "paper" ||
+        choice === "paper" && botWeapon === "rock"){
+          message("You won!")
+        }else if (choice === botWeapon) {
+          message("Tie!")
+        }else{
+          message("You lost Sucka!")
+        }
+      }
+      function message(msg){
+        document.getElementsByTagName('p')[0].innerHTML = msg;
+      }
+    </script>
+  </body>
+</html>
